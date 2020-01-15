@@ -17,7 +17,7 @@ class StarRating extends Component {
         <Star
           id={i + 1}
           changeRating={this.handleRateChange}
-          className={i < this.state.rating || i === 0 ? "selected" : ""}
+          className={i < this.state.rating ? "selected" : null}
           key={i}
         />
       )
@@ -29,11 +29,11 @@ class StarRating extends Component {
   // Write an event handler that updates the rating state.
   // Pass the function to a Star component via props
   handleRateChange = (id) => {
-    this.setState(preveState => {
-      return {
-        rating: preveState.rating = id
-      }
-    })
+    if (id === this.state.rating) {
+      this.setState(preveState => ({rating: preveState.rating = 0}))
+    } else {
+      this.setState(preveState => ({rating: preveState.rating = id}))
+    }
   }
 
 
